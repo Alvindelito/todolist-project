@@ -18,13 +18,23 @@ export default function TodoApp() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const updateTask = (id, updatedTask) => {
+    setTasks(
+      tasks.map((todo) =>
+        todo.id === id
+          ? { id: todo.id, task: updatedTask, isCompleted: todo.isCompleted }
+          : todo
+      )
+    );
+  };
+
   return (
     <div>
       <h1>To Do List</h1>
       {/* Todo Form */}
       <TodoForm addTask={addTask} />
       {/* Todo List */}
-      <TodoList tasks={tasks} removeTask={removeTask} />
+      <TodoList tasks={tasks} removeTask={removeTask} updateTask={updateTask} />
     </div>
   );
 }

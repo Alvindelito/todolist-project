@@ -14,9 +14,13 @@ export default function TodoForm(props) {
         }
       }}
     >
-      <label htmlFor="Add New Task">
-        New Task:
-        <input type="text" name="name" value={value} onChange={handleChange} />
+      <label htmlFor="Update Current Task">
+        <input
+          type="text"
+          name="updatedTask"
+          value={value}
+          onChange={handleChange}
+        />
       </label>
       <button>Update</button>
     </form>

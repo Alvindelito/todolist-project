@@ -10,7 +10,7 @@ export default function TodoForm({ addTask }) {
         onSubmit={(e) => {
           e.preventDefault();
           if (value !== "") {
-            addTask({ id: uuidv4(), task: value, isCompleted: false });
+            addTask(value);
           }
           reset();
         }}
@@ -19,8 +19,8 @@ export default function TodoForm({ addTask }) {
           New Task:
           <input
             type="text"
-            name="name"
-            placeholder="HERE"
+            name="newTask"
+            placeholder="Example: Collect Wool"
             value={value}
             onChange={handleChange}
           />

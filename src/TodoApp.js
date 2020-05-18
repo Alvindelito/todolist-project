@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
+import useTodoState from "./hooks/useTodoState";
 
 export default function TodoApp() {
   const sampleList = [
@@ -8,35 +9,9 @@ export default function TodoApp() {
     { id: 2, task: "mow it", isCompleted: false },
   ];
 
-  const [tasks, setTasks] = useState(sampleList);
-
-  const addTask = (value) => {
-    setTasks([...tasks, value]);
-  };
-
-  const removeTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
-  };
-
-  const updateTask = (id, updatedTask) => {
-    setTasks(
-      tasks.map((todo) =>
-        todo.id === id
-          ? { id: todo.id, task: updatedTask, isCompleted: todo.isCompleted }
-          : todo
-      )
-    );
-  };
-
-  const toggleTodo = (id) => {
-    setTasks(
-      tasks.map((todo) =>
-        todo.id === id
-          ? { id: todo.id, task: todo.task, isCompleted: !todo.isCompleted }
-          : todo
-      )
-    );
-  };
+  const { tasks, addTask, removeTask, updateTask, toggleTodo } = useTodoState(
+    sampleList
+  );
 
   return (
     <div>

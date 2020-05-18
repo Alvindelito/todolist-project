@@ -9,7 +9,9 @@ export default function TodoForm({ addTask }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addTask({ id: uuidv4(), task: value, isCompleted: false });
+          if (value !== "") {
+            addTask({ id: uuidv4(), task: value, isCompleted: false });
+          }
           reset();
         }}
       >

@@ -8,8 +8,10 @@ export default function TodoForm(props) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        updateTask(id, value);
-        toggleUpdate(false);
+        if (value !== "") {
+          updateTask(id, value);
+          toggleUpdate(false);
+        }
       }}
     >
       <label htmlFor="Add New Task">

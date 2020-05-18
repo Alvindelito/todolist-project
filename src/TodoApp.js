@@ -4,7 +4,7 @@ import TodoForm from "./TodoForm";
 
 export default function TodoApp() {
   const sampleList = [
-    { id: 1, task: "eat grass", isCompleted: false },
+    { id: 1, task: "eat grass", isCompleted: true },
     { id: 2, task: "mow it", isCompleted: false },
   ];
 
@@ -28,13 +28,28 @@ export default function TodoApp() {
     );
   };
 
+  const toggleTodo = (id) => {
+    setTasks(
+      tasks.map((todo) =>
+        todo.id === id
+          ? { id: todo.id, task: todo.task, isCompleted: !todo.isCompleted }
+          : todo
+      )
+    );
+  };
+
   return (
     <div>
       <h1>To Do List</h1>
       {/* Todo Form */}
       <TodoForm addTask={addTask} />
       {/* Todo List */}
-      <TodoList tasks={tasks} removeTask={removeTask} updateTask={updateTask} />
+      <TodoList
+        tasks={tasks}
+        removeTask={removeTask}
+        updateTask={updateTask}
+        toggleTodo={toggleTodo}
+      />
     </div>
   );
 }

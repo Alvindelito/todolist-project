@@ -14,13 +14,17 @@ export default function TodoApp() {
     setTasks([...tasks, value]);
   };
 
+  const removeTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
   return (
     <div>
       <h1>To Do List</h1>
       {/* Todo Form */}
       <TodoForm addTask={addTask} />
       {/* Todo List */}
-      <TodoList tasks={tasks} />
+      <TodoList tasks={tasks} removeTask={removeTask} />
     </div>
   );
 }

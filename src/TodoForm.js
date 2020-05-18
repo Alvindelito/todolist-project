@@ -1,5 +1,6 @@
 import React from "react";
 import useInputState from "./hooks/useInputState";
+import { v4 as uuidv4 } from "uuid";
 
 export default function TodoForm({ addTask }) {
   const [value, handleChange, reset] = useInputState("");
@@ -8,7 +9,7 @@ export default function TodoForm({ addTask }) {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addTask({ id: 3, task: value, isCompleted: false });
+          addTask({ id: uuidv4(), task: value, isCompleted: false });
           reset();
         }}
       >

@@ -1,9 +1,10 @@
 import React from "react";
 import TodoApp from "./TodoApp";
+import styles from "./styles/styles.module.scss";
 
 function App() {
   return (
-    <div>
+    <div className={styles.container}>
       <TodoApp />
     </div>
   );

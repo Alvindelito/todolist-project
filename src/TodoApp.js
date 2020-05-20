@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import useTodoState from "./hooks/useTodoState";
+import styles from "./styles/styles.module.scss";
 
 export default function TodoApp() {
   const sampleList = [
@@ -14,8 +15,8 @@ export default function TodoApp() {
   );
 
   return (
-    <div>
-      <h1>To Do List</h1>
+    <div className={styles.todoColumn}>
+      <h1 style={{ textAlign: "center" }}>To Do List</h1>
       {/* Todo Form */}
       <TodoForm addTask={addTask} />
       {/* Todo List */}

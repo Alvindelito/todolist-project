@@ -1,9 +1,10 @@
 import React from "react";
 import Todo from "./Todo";
+import styles from "./styles/styles.module.scss";
 
 function TodoList({ tasks, removeTask, updateTask, toggleTodo }) {
   return (
-    <div>
+    <ul className={styles.taskList}>
       {tasks.map((todo) => (
         <Todo
           key={todo.id}
@@ -13,7 +14,7 @@ function TodoList({ tasks, removeTask, updateTask, toggleTodo }) {
           toggleTodo={toggleTodo}
         />
       ))}
-    </div>
+    </ul>
   );
 }
 

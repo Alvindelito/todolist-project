@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 
 export default function Todo(props) {
-  const { id, isCompleted, updateTask, removeTask, toggleTodo } = props;
+  const { _id, isCompleted, updateTask, removeTask, toggleTodo } = props;
   const [isUpdating, toggleUpdate] = useToggleState(false);
 
   function handleClick(e) {
-    removeTask(id);
+    removeTask(_id);
   }
   return (
     <>
@@ -26,7 +26,7 @@ export default function Todo(props) {
             <input
               type="checkbox"
               checked={isCompleted}
-              onChange={() => toggleTodo(id)}
+              onChange={() => toggleTodo(_id)}
               id="checkbox"
             />
           </label>

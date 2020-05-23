@@ -1,18 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import useTodoState from "./hooks/useTodoState";
 import styles from "./styles/styles.module.scss";
+// require("dotenv").config({ path: "../.env" });
 
 export default function TodoApp() {
-  const sampleList = [
-    { id: 1, task: "eat grass", isCompleted: true },
-    { id: 2, task: "mow it", isCompleted: false },
-  ];
+  // const sampleList = [
+  //   { id: 1, task: "eat grass", isCompleted: true },
+  //   { id: 2, task: "mow it", isCompleted: false },
+  // ];
 
-  const { tasks, addTask, removeTask, updateTask, toggleTodo } = useTodoState(
-    sampleList
-  );
+  let {
+    tasks,
+    setTasks,
+    addTask,
+    removeTask,
+    updateTask,
+    toggleTodo,
+  } = useTodoState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}`)
+      .then((response) => {
+        if (response.data.length > 0) {
+          setTasks(response.data);
+          console.log([...response.data]);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className={styles.todoColumn}>

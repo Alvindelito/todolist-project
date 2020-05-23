@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 export default function TodoForm(props) {
-  const { id, task, updateTask, toggleUpdate } = props;
+  const { _id, task, updateTask, toggleUpdate } = props;
   const [value, handleChange] = useInputState(task);
   return (
     <form
@@ -13,7 +13,7 @@ export default function TodoForm(props) {
       onSubmit={(e) => {
         e.preventDefault();
         if (value !== "") {
-          updateTask(id, value);
+          updateTask(_id, value);
           toggleUpdate(false);
         }
       }}

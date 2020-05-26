@@ -4,7 +4,6 @@ import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import useTodoState from "./hooks/useTodoState";
 import styles from "./styles/styles.module.scss";
-// require("dotenv").config({ path: "../.env" });
 
 export default function TodoApp() {
   // const sampleList = [
@@ -27,7 +26,7 @@ export default function TodoApp() {
       .then((response) => {
         if (response.data.length > 0) {
           setTasks(response.data);
-          console.log([...response.data]);
+          console.log("RENDER");
         }
       })
       .catch((error) => {

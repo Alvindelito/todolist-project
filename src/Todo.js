@@ -26,7 +26,7 @@ export default function Todo(props) {
             <input
               type="checkbox"
               checked={isCompleted}
-              onChange={() => toggleTodo(_id)}
+              onChange={() => toggleTodo(_id, isCompleted)}
               id="checkbox"
             />
           </label>

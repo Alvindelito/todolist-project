@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect(process.env.ATLAS_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 const db = mongoose.connection;
@@ -33,8 +34,10 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   const task = req.body.task;
+  const newId = req.body._id;
 
   const newTask = new TodoList({
+    _id: newId,
     task: task,
     isCompleted: false,
   });
@@ -46,7 +49,7 @@ app.post("/", (req, res) => {
 });
 
 app.delete("/", (req, res) => {
-  const taskId = req.body.id;
+  const taskId = req.body._id;
   console.log(req.body);
 
   TodoList.findByIdAndRemove(taskId)
@@ -55,10 +58,9 @@ app.delete("/", (req, res) => {
 });
 
 app.patch("/", (req, res) => {
-  const todoId = req.body.id;
+  const todoId = req.body._id;
   const isCompleted = req.body.isCompleted;
   const updateTask = req.body.updateTask || null;
-  console.log(updateTask);
 
   if (updateTask != null) {
     TodoList.findByIdAndUpdate(todoId, {

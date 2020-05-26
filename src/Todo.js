@@ -9,9 +9,6 @@ export default function Todo(props) {
   const { _id, isCompleted, updateTask, removeTask, toggleTodo } = props;
   const [isUpdating, toggleUpdate] = useToggleState(false);
 
-  function handleClick(e) {
-    removeTask(_id);
-  }
   return (
     <>
       {isUpdating ? (
@@ -40,7 +37,7 @@ export default function Todo(props) {
           <button onClick={() => toggleUpdate(!isUpdating)}>
             <FontAwesomeIcon icon={faEdit} />
           </button>
-          <button onClick={handleClick}>
+          <button onClick={() => removeTask(_id)}>
             <FontAwesomeIcon icon={faTrash} />
           </button>
         </li>

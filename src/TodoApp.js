@@ -11,7 +11,7 @@ export default function TodoApp() {
   //   { id: 2, task: "mow it", isCompleted: false },
   // ];
 
-  let [isLoading, setLoading] = useState(false);
+  let [isLoaded, setLoading] = useState(false);
 
   let {
     tasks,
@@ -36,7 +36,7 @@ export default function TodoApp() {
       });
   }, []);
 
-  if (isLoading) {
+  if (isLoaded) {
     return (
       <div className={styles.todoColumn}>
         <h1 style={{ textAlign: "center" }}>To Do List</h1>

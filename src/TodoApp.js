@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
@@ -10,6 +10,8 @@ export default function TodoApp() {
   //   { id: 1, task: "eat grass", isCompleted: true },
   //   { id: 2, task: "mow it", isCompleted: false },
   // ];
+
+  let [isLoading, setLoading] = useState(false);
 
   let {
     tasks,
@@ -26,7 +28,7 @@ export default function TodoApp() {
       .then((response) => {
         if (response.data.length > 0) {
           setTasks(response.data);
-          console.log("RENDER");
+          setLoading(true);
         }
       })
       .catch((error) => {
@@ -34,18 +36,20 @@ export default function TodoApp() {
       });
   }, []);
 
-  return (
-    <div className={styles.todoColumn}>
-      <h1 style={{ textAlign: "center" }}>To Do List</h1>
-      {/* Todo Form */}
-      <TodoForm addTask={addTask} />
-      {/* Todo List */}
-      <TodoList
-        tasks={tasks}
-        removeTask={removeTask}
-        updateTask={updateTask}
-        toggleTodo={toggleTodo}
-      />
-    </div>
-  );
+  if (isLoading) {
+    return (
+      <div className={styles.todoColumn}>
+        <h1 style={{ textAlign: "center" }}>To Do List</h1>
+        <TodoForm addTask={addTask} />
+        <TodoList
+          tasks={tasks}
+          removeTask={removeTask}
+          updateTask={updateTask}
+          toggleTodo={toggleTodo}
+        />
+      </div>
+    );
+  } else {
+    return <h1>LOADING</h1>;
+  }
 }

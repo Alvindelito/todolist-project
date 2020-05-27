@@ -6,6 +6,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export default function TodoForm({ addTask }) {
   const [value, handleChange, reset] = useInputState("");
+
   return (
     <form
       className={styles.TodoForm}
